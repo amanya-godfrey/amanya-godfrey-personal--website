@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - My Personal Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 140px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #6a11cb;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #6a11cb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background: #2575fc;
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-caption {
+            padding: 1rem;
+            background-color: white;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #6a11cb;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">MyProfile</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="about">About Me</a></li>
+                    <li><a href="#" class="nav-link" data-page="portfolio">Portfolio</a></li>
+                    <li><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact Me</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <img src="five.jpg" alt="Profile Picture" class="profile-img">
+                <h1>Welcome to My Personal Website</h1>
+                <p>Hello! I'm [Amanya Godfrey], a passionate research assistant and [Student of information technology] with interests in technology, design, and creative projects.</p>
+                <a href="#" class="btn nav-link" data-page="about">Learn More About Me</a>
+            </div>
+            
+            <div class="content-section">
+                <h2>Quick Introduction</h2>
+                <p>This website showcases my personal profile, academic background, projects, interests, and contact information. Feel free to explore the different sections using the navigation menu above.</p>
+                <p>I'm constantly learning and working on new projects. Check out my portfolio to see some of my recent work!</p>
+            </div>
+        </section>
+
+        <!-- About Me Page -->
+        <section id="about" class="page">
+            <div class="content-section">
+                <h1>About Me</h1>
+                <p>I'm a dedicated individual with a passion for learning and creating. Below you'll find more information about my background and skills.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Personal Background</h2>
+                <p>I was born and raised in [Rakai district,Uganda]. From a young age, I've been fascinated by technology and how it can be used to solve problems and create amazing experiences.</p>
+                <p>When I'm not working or studying, I enjoy [listening to gospel music,watching movies,adventure,visiting friends]. These activities help me maintain a balanced lifestyle and fuel my creativity.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Education</h2>
+                <table>
+                    <tr>
+                        <th>Year</th>
+                        <th>Degree/Program</th>
+                        <th>Institution</th>
+                    </tr>
+                    <tr>
+                        <td>2024-Present</td>
+                        <td>Bachelor of Science in IT</td>
+                        <td>Ndejje University</td>
+                    </tr>
+                    <tr>
+                        <td>2017-2019</td>
+                        <td>diploma in Livestodk management and entreprenuership</td>
+                        <td>labour college of East Africa</td>
+                    </tr>
+                    <tr>
+                        <td>2012-2014</td>
+                        <td>Ntare school</td>
+                        <td>high school</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="content-section">
+                <h2>Skills</h2>
+                <ul>
+                    <li>Web Development (HTML, CSS, JavaScript)</li>
+                    <li>Programming (Python, Java)</li>
+                    <li>Graphic Design (Adobe Photoshop, Illustrator)</li>
+                    <li>Problem Solving and Critical Thinking</li>
+                    <li>Communication and Teamwork</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Portfolio Page -->
+        <section id="portfolio" class="page">
+            <div class="content-section">
+                <h1>My Portfolio</h1>
+                <p>Here are some of the projects I've worked on. Each project represents a learning experience and an opportunity to apply my skills.</p>
+            </div>
+            
+            <div class="project-card">
+                <h2>Personal Website</h2>
+                <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+                <p>This responsive personal website showcases my profile and projects. It features a clean design and smooth navigation between sections.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+            
+            <div class="project-card">
+                <h2>E-commerce Website</h2>
+                <p><strong>Technologies:</strong> HTML, CSS, JavaScript, PHP</p>
+                <p>A fully functional e-commerce website with product listings, shopping cart, and checkout functionality. Developed as part of a web development course.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+            
+            <div class="project-card">
+                <h2>Task Management App</h2>
+                <p><strong>Technologies:</strong> Python, Flask, SQLite</p>
+                <p>A web application for managing daily tasks. Users can create, update, and delete tasks, set priorities, and mark tasks as completed.</p>
+                <a href="#" class="btn">View Project</a>
+            </div>
+            
+            <div class="content-section">
+                <h2>Academic Projects</h2>
+                <table>
+                    <tr>
+                        <th>Course</th>
+                        <th>Project Title</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>Web Development</td>
+                        <td>Responsive Blog Website</td>
+                        <td>Created a blog with responsive design and comment functionality</td>
+                    </tr>
+                    <tr>
+                        <td>Database Systems</td>
+                        <td>Library Management System</td>
+                        <td>Designed and implemented a database for tracking books and borrowers</td>
+                    </tr>
+                    <tr>
+                        <td>Software Engineering</td>
+                        <td>Team Project Management Tool</td>
+                        <td>Collaborated with a team to build a project management application</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Gallery Page -->
+        <section id="gallery" class="page">
+            <div class="content-section">
+                <h1>My Gallery</h1>
+                <p>This section showcases my interests and hobbies through images. From travel photos to creative projects, these images represent what I'm passionate about.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Travel Photography</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="one.jpg" alt="street adventure">
+                        <div class="gallery-caption">
+                            <h3>Street Adventure</h3>
+                            <p>feeling the mood</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="six.jpg" alt="work oriented">
+                        <div class="gallery-caption">
+                            <h3>work becomes a hobby</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="three.jpg" alt="teamwork">
+                        <div class="gallery-caption">
+                            <h3>team work builds</h3>
+                            <p>teams are like joints</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+                
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="content-section">
+                <h1>Contact Me</h1>
+                <p>I'd love to hear from you! Feel free to reach out using the contact form below or through any of my social media profiles.</p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Get In Touch</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="content-section">
+                <h2>Contact Information</h2>
+                <p><strong>Email:</strong> godfreyamanya7@gmail.com</p>
+                <p><strong>Phone:</strong> 0783523054</p>
+                <p><strong>Location:</strong> Kampala, Uganda</p>
+                
+                <div class="social-links">
+                    <a href="#" title="LinkedIn">LinkedIn</a>
+                    <a href="#" title="GitHub">GitHub</a>
+                    <a href="#" title="Twitter">Twitter</a>
+                    <a href="#" title="Instagram">Instagram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Personal Profile Website. All rights reserved.</p>
+            <p>This website was created as part of an individual activity for HTML practice.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pages and links
+                    pages.forEach(page => page.classList.remove('active'));
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    
+                    // Add active class to clicked link and corresponding page
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
